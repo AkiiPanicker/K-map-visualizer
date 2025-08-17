@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karnaugh Map Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Karnaugh Map Visualizer! <span class="emoji">👋</span></h1>
+        </header>
+
+        <!-- START: ADDED SECTION -->
+        <section class="auto-parser-section">
+            <h2>Automatic Problem Solver</h2>
+            <div class="form-group">
+                <label for="problem-input">Paste your problem here:</label>
+                <textarea id="problem-input" rows="3" placeholder="e.g., F(a,b,c,d) = sigma m (1,5,7,9,13) or G(x,y,z) = pi M (0,2,6)"></textarea>
+                <div id="parse-error-box" class="error-box"></div>
+            </div>
+            <button id="parse-problem-btn" class="btn btn-primary">Solve from Text</button>
+        </section>
+        <!-- END: ADDED SECTION -->
+
+        <main class="controls-grid">
+            <form id="kmap-form">
+                <div class="form-group">
+                    <label for="output-name">Output Name:</label>
+                    <small>A single string for the function's output.</small>
+                    <input type="text" id="output-name" value="f">
+                </div>
+                <div class="form-group">
+                    <label for="terms">Terms:</label>
+                    <small>A list of numbers with commas separating them.</small>
+                    <input type="text" id="terms" placeholder="e.g. 1, 4, 5, 9">
+                </div>
+                 <div class="form-group">
+                    <label for="input-names">Input Names:</label>
+                    <small>Comma-separated list of the names of the variables.</small>
+                    <input type="text" id="input-names" value="a, b, c, d">
+                </div>
+                <div class="form-group">
+                    <label for="dont-cares">Don't Cares:</label>
+                    <small>A list of numbers with commas separating them.</small>
+                    <input type="text" id="dont-cares" placeholder="e.g. 2, 8, 10">
+                </div>
+                 <div class="form-group standalone-button">
+                     <button type="button" class="btn btn-secondary" id="reset-terms-btn">Reset Terms</button>
+                 </div>
+            </form>
+
+            <div class="solution-area">
+                <label>Solution:</label>
+                <div id="solution-box" class="solution-box">0</div>
+            </div>
+           
+            <div class="settings-area">
+                <fieldset>
+                    <legend>Settings:</legend>
+                    <div class="radio-group">
+                        <input type="radio" id="sop" name="form-type" value="SOP" checked>
+                        <label for="sop">Sum of Products</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="pos" name="form-type" value="POS">
+                        <label for="pos">Product of Sums</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="draw-kmap" checked>
+                        <label for="draw-kmap">Draw Kmap</label>
+                    </div>
+                     <div class="checkbox-group">
+                        <input type="checkbox" id="draw-groupings" checked>
+                        <label for="draw-groupings">Draw groupings</label>
+                    </div>
+                    <button type="button" class="btn btn-danger" id="reset-all-btn">Reset Everything</button>
+                </fieldset>
+            </div>
+        </main>
+        
+        <section id="kmap-section">
+            <h2 id="kmap-title">Karnaugh Map</h2>
+            <div id="kmap-container">
+                 <!-- K-Map will be generated here -->
+            </div>
+        </section>
+
+        <section id="explanation-section">
+            <h2>Solution Breakdown</h2>
+            <div id="explanation-box" class="explanation-content">
+                <!-- Dynamic explanation content will be injected here by script.js -->
+            </div>
+        </section>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 # K-map-visualizer
-Just a K map stuff
+Just a K map visualizer for a friend
 
 Inspired from : https://kmap-visualizer.lebyy.me/
 
